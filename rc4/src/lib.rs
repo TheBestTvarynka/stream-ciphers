@@ -59,6 +59,7 @@ type BlockSize = consts::U1;
 pub type Rc4<KeySize> = StreamCipherCoreWrapper<Rc4Core<KeySize>>;
 
 /// Core state of the RC4 stream cipher initialized only with key.
+#[derive(Clone)]
 pub struct Rc4Core<KeySize> {
     state: Rc4State,
 
@@ -119,6 +120,7 @@ impl StreamCipherBackend for Backend<'_> {
     }
 }
 
+#[derive(Clone)]
 struct Rc4State {
     state: [u8; 256],
     i: u8,
